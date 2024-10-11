@@ -7,6 +7,7 @@ WORKDIR /app
 # Kopier requirements.txt og installer afhængigheder
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+RUN pip install flask
 
 # Kopier resten af applikationsfilerne
 COPY . .
