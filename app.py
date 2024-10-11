@@ -5,8 +5,13 @@ import os
 
 app = Flask(__name__)
 
-# Database path from environment variable or default to 'payments.db'
-DATABASE_PATH = os.getenv('DATABASE_URL', 'data/payments.db')
+# Get the database path from an environment variable, or use a default path
+DATABASE_DIR = os.environ.get('DATABASE_DIR', '/app')
+DATABASE_PATH = os.path.join(DATABASE_DIR, 'payments.db')
+
+# Ensure that the 'payments_data' directory exists
+if not os.path.exists(DATABASE_DIR):
+    os.makedirs(DATABASE_DIR)
 
 # Helper function to connect to the database
 def get_db_connection():
